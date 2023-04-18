@@ -1,0 +1,160 @@
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+                            
+        <div class="row">
+<div>
+    <div class="container" *ngIf="Medicament== true">
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Liste des Medicaments</h3><br/>
+          <div *ngIf="affichermessage== true"  [ngClass]="{'alert alert-success': true, 'alert alert-warning': message === 'Une erreur s\'est produite lors du chargement'}" role="alert">
+            {{ message }}
+          </div>
+          
+          
+          <h1 ></h1><br/>
+    
+          <div class="row">
+            <button class="btn btn-primary btn-sm" (click)="getAll()">Recharger</button>
+            <button type="submit" class="btn btn-success btn-sm" (click)="afficherformulaire()">Ajouter un Medicament</button></div><br/>
+    
+            
+          <table class="table" border="1" *ngIf="!affichermessage== true">
+            <thead>
+              <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Code</th>
+                <th scope="col">Intitule</th>
+                <th scope="col">posologie</th>
+                <th scope="col">Consultation</th>
+                
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+    
+        
+            
+                <tr *ngFor="let Medicament of Medicaments">
+                  
+                  <td scope="row">{{Medicament.id}}</td>
+                  <td scope="row">{{Medicament.code}}</td>
+                  <td scope="row">{{Medicament.intitule}}</td>
+                  <td scope="row">{{Medicament.posologie}}</td>
+                  <td scope="row">{{Medicament.consultation.motif}}</td>
+                  
+                  
+                  <!--<td scope="row" *ngIf="Medicament.getstatus()== true"><span class="badge badge-primary">Actif</span></td>
+                  <td scope="row" *ngIf="Medicament.getstatus()== false"><span class="badge badge-danger">Non actif</span></td>
+                  <td scope="row" (click)="activer(Medicament.getid())" *ngIf="Medicament.getstatus()== false"><button class="btn btn-success btn-sm">Activer</button></td>
+                  <td scope="row" (click)="desactiver(Medicament.getid())" *ngIf="Medicament.getstatus()== true"><button class="btn btn-danger btn-sm">Désactiver</button></td>
+                  --><td scope="row" (click)="affichermodif(Medicament)"><button class="btn btn-warning btn-sm">Modifier</button></td>
+                  <td scope="row" (click)="supprimer(Medicament.id)"><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                </tr>
+                
+              
+            <!--<app-Medicament MedicamentName="machine à laver" MedicamentStatus="[MedicamentOne]"></app-Medicament>
+            <app-Medicament MedicamentName="Frigo"></app-Medicament>
+            <app-Medicament MedicamentName="Ordinateur"></app-Medicament>{{ number }}-->
+          
+        </tbody>
+      </table>
+          <!--<button class="btn btn-success" [disabled]="isAuth"
+          (click)="onAllumer()">Tout allumer </button>-->
+        </div>
+      </div>
+    </div>
+      
+    
+    
+    <div class="container"  *ngIf="formulaire== true">
+      
+      <div class="row">
+        
+        <form (ngSubmit)="ajouter()">
+          <div class="col-xs-12">
+            <h3>Ajouter un Medicament</h3></div><br/>
+          <div class="row">
+          <button class="btn btn-success btn-sm" (click)="afficherMedicament()">  Afficher liste</button></div><br/>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Code</label>
+            <input type="text" [(ngModel)]="code" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Intitule</label>
+            <input type="text" [(ngModel)]="intitule" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Posologie</label>
+            <input type="text" [(ngModel)]="posologie" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleInputEmail1">Consultation</label>
+            
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="consultation" name="Filiere">
+              <option selected>chosissez une concultation</option>
+              <option [ngValue]="consultation" *ngFor="let consultation of consultations;let n=index">{{consultation.motif}}</option>
+          </select>
+          </div>
+          
+          <button type="submit"  [disabled]="isDisabled" class="btn btn-primary btn-sm">{{soumission}}</button>
+        </form>
+        
+      </div>
+    </div>
+      
+    
+
+
+    <div class="container"  *ngIf="modif== true">
+      
+        <div class="row">
+          
+          <form (ngSubmit)="modifier()">
+            <div class="col-xs-12">
+              <h3>Ajouter un Medicament</h3></div><br/>
+            <div class="row">
+            <button class="btn btn-success btn-sm" (click)="afficherMedicament()">  Afficher liste</button></div><br/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Code</label>
+                <input type="text" [(ngModel)]="code" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Intitule</label>
+                <input type="text" [(ngModel)]="intitule" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Posologie</label>
+                <input type="text" [(ngModel)]="posologie" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail1">Consultation</label>
+                
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="consultation" name="Filiere">
+                  <option selected>chosissez une consultation</option>
+                  <option [ngValue]="consultation" *ngFor="let consultation of consultations;let n=index">{{consultation.motif}}</option>
+              </select>
+              </div>    
+            <button type="submit" class="btn btn-primary btn-sm">Soumettre</button>
+          </form>
+          
+        </div>
+      </div>
+        
+      
+      
+    
+    </div>
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,149 @@
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+                            
+        <div class="row">
+<div>
+    <div class="container" *ngIf="Consultation== true">
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Liste des Consultations</h3><br/>
+          <div *ngIf="affichermessage== true"  [ngClass]="{'alert alert-success': true, 'alert alert-warning': message === 'Une erreur s\'est produite lors du chargement'}" role="alert">
+            {{ message }}
+          </div>
+          
+          
+          <h1 ></h1><br/>
+    
+          <div class="row">
+            <button class="btn btn-primary btn-sm" (click)="getAll()">Recharger</button>
+            <button type="submit" class="btn btn-success btn-sm" (click)="afficherformulaire()">Ajouter un Consultation</button></div><br/>
+    
+            
+          <table class="table" border="1" *ngIf="!affichermessage== true">
+            <thead>
+              <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Motif</th>
+                <th scope="col">Diagnostic</th>
+                <th scope="col">Animal</th>
+                
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+    
+        
+            
+                <tr *ngFor="let Consultation of Consultations">
+                  
+                  <td scope="row">{{Consultation.id}}</td>
+                  <td scope="row">{{Consultation.motif}}</td>
+                  <td scope="row">{{Consultation.diagnostic}}</td>
+                  <td scope="row">{{Consultation.animal.nom}}</td>
+                  
+                  
+                  <!--<td scope="row" *ngIf="Consultation.getstatus()== true"><span class="badge badge-primary">Actif</span></td>
+                  <td scope="row" *ngIf="Consultation.getstatus()== false"><span class="badge badge-danger">Non actif</span></td>
+                  <td scope="row" (click)="activer(Consultation.getid())" *ngIf="Consultation.getstatus()== false"><button class="btn btn-success btn-sm">Activer</button></td>
+                  <td scope="row" (click)="desactiver(Consultation.getid())" *ngIf="Consultation.getstatus()== true"><button class="btn btn-danger btn-sm">Désactiver</button></td>
+                  --><td scope="row" (click)="affichermodif(Consultation)"><button class="btn btn-warning btn-sm">Modifier</button></td>
+                  <td scope="row" (click)="supprimer(Consultation.id)"><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                </tr>
+                
+              
+            <!--<app-Consultation ConsultationName="machine à laver" ConsultationStatus="[ConsultationOne]"></app-Consultation>
+            <app-Consultation ConsultationName="Frigo"></app-Consultation>
+            <app-Consultation ConsultationName="Ordinateur"></app-Consultation>{{ number }}-->
+          
+        </tbody>
+      </table>
+          <!--<button class="btn btn-success" [disabled]="isAuth"
+          (click)="onAllumer()">Tout allumer </button>-->
+        </div>
+      </div>
+    </div>
+      
+    
+    
+    <div class="container"  *ngIf="formulaire== true">
+      
+      <div class="row">
+        
+        <form (ngSubmit)="ajouter()">
+          <div class="col-xs-12">
+            <h3>Ajouter un Consultation</h3></div><br/>
+          <div class="row">
+          <button class="btn btn-success btn-sm" (click)="afficherConsultation()">  Afficher liste</button></div><br/>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Motif</label>
+            <input type="text" [(ngModel)]="motif" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Diagnostic</label>
+            <input type="text" [(ngModel)]="diagnostic" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleInputEmail1">Animal</label>
+            
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="animal" name="Filiere">
+              <option selected>chosissez un animal</option>
+              <option [ngValue]="animal" *ngFor="let animal of animaux;let n=index">{{animal.nom}}</option>
+          </select>
+          </div>
+          
+          <button type="submit"  [disabled]="isDisabled" class="btn btn-primary btn-sm">{{soumission}}</button>
+        </form>
+        
+      </div>
+    </div>
+      
+    
+
+
+    <div class="container"  *ngIf="modif== true">
+      
+        <div class="row">
+          
+          <form (ngSubmit)="modifier()">
+            <div class="col-xs-12">
+              <h3>Ajouter un Consultation</h3></div><br/>
+            <div class="row">
+            <button class="btn btn-success btn-sm" (click)="afficherConsultation()">  Afficher liste</button></div><br/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Motif</label>
+                <input type="text" [(ngModel)]="motif" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Diagnostic</label>
+                <input type="text" [(ngModel)]="diagnostic" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail1">Animal</label>
+                
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="animal" name="Filiere">
+                  <option selected>chosissez un animal</option>
+                  <option [ngValue]="animal" *ngFor="let animal of animaux;let n=index">{{animal.nom}}</option>
+              </select>
+              </div>  
+                
+            <button type="submit" class="btn btn-primary btn-sm">Soumettre</button>
+          </form>
+          
+        </div>
+      </div>
+        
+      
+      
+    
+    </div>
+    </div>
+    </div>
+    </div>

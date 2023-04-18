@@ -1,0 +1,131 @@
+
+<div class="content-body">
+  <!-- row -->
+  <div class="container-fluid">
+                          
+      <div class="row">
+<div>
+    <div class="container" *ngIf="Categorie== true">
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Liste des Categories</h3><br/>
+          <div *ngIf="affichermessage== true"  [ngClass]="{'alert alert-success': true, 'alert alert-warning': message === 'Une erreur s\'est produite lors du chargement'}" role="alert">
+            {{ message }}
+          </div>
+          
+          
+          <h1 ></h1><br/>
+    
+          <div class="row">
+            <button class="btn btn-primary btn-sm" (click)="getAll()">Recharger</button>
+            <button type="submit" class="btn btn-success btn-sm" (click)="afficherformulaire()">Ajouter un Categorie</button></div><br/>
+    
+            
+          <table class="table" border="1" *ngIf="!affichermessage== true">
+            <thead>
+              <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Intitule</th>
+                <th scope="col">Caracteristiques</th>
+                
+                <!--<th scope="col">Statut</th>-->
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+    
+        
+            
+                <tr *ngFor="let Categorie of Categories">
+                  
+                  <td scope="row">{{Categorie.id}}</td>
+                  <td scope="row">{{Categorie.intitule}}</td>
+                  <td scope="row">{{Categorie.caracteristiques}}</td>
+                  
+                  
+                  <!--<td scope="row" *ngIf="Categorie.getstatus()== true"><span class="badge badge-primary">Actif</span></td>
+                  <td scope="row" *ngIf="Categorie.getstatus()== false"><span class="badge badge-danger">Non actif</span></td>
+                  <td scope="row" (click)="activer(Categorie.getid())" *ngIf="Categorie.getstatus()== false"><button class="btn btn-success btn-sm">Activer</button></td>
+                  <td scope="row" (click)="desactiver(Categorie.getid())" *ngIf="Categorie.getstatus()== true"><button class="btn btn-danger btn-sm">Désactiver</button></td>
+                  --><td scope="row" (click)="affichermodif(Categorie)"><button class="btn btn-warning btn-sm">Modifier</button></td>
+                  <td scope="row" (click)="supprimer(Categorie.id)"><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                </tr>
+                
+              
+            <!--<app-Categorie CategorieName="machine à laver" CategorieStatus="[CategorieOne]"></app-Categorie>
+            <app-Categorie CategorieName="Frigo"></app-Categorie>
+            <app-Categorie CategorieName="Ordinateur"></app-Categorie>{{ number }}-->
+          
+        </tbody>
+      </table>
+          <!--<button class="btn btn-success" [disabled]="isAuth"
+          (click)="onAllumer()">Tout allumer </button>-->
+        </div>
+      </div>
+    </div>
+      
+    
+    
+    <div class="container"  *ngIf="formulaire== true">
+      
+      <div class="row">
+        
+        <form (ngSubmit)="ajouter()">
+          <div class="col-xs-12">
+            <h3>Ajouter un Categorie</h3></div><br/>
+          <div class="row">
+          <button class="btn btn-success btn-sm" (click)="afficherCategorie()">  Afficher liste</button></div><br/>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Description</label>
+            <input type="text" [(ngModel)]="intitule" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Désignation</label>
+            <input type="text" [(ngModel)]="caracteristiques" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+            
+          </div>
+          
+          <button type="submit"  [disabled]="isDisabled" class="btn btn-primary btn-sm">{{soumission}}</button>
+        </form>
+        
+      </div>
+    </div>
+      
+    
+
+
+    <div class="container"  *ngIf="modif== true">
+      
+        <div class="row">
+          
+          <form (ngSubmit)="modifier()">
+            <div class="col-xs-12">
+              <h3>Ajouter un Categorie</h3></div><br/>
+            <div class="row">
+            <button class="btn btn-success btn-sm" (click)="afficherCategorie()">  Afficher liste</button></div><br/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Description</label>
+                <input type="text" [(ngModel)]="intitule" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le description" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Désignation</label>
+                <input type="text" [(ngModel)]="caracteristiques" name="designation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la désignation" [ngModelOptions]="{standalone: true}">
+                
+              </div>
+              
+            <button type="submit" class="btn btn-primary btn-sm">Soumettre</button>
+          </form>
+          
+        </div>
+      </div>
+        
+      
+      
+    
+    </div>
+    </div>
+    </div>
+    </div>
