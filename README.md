@@ -2,7 +2,7 @@
 Notre projet consiste en la création d'un logiciel de gestion de stock et de consultation de vétérinaire, utilisant les technologies Angular, Spring Boot et 
 Docker.Le logiciel permettra aux vétérinaires de gérer leur stock de médicaments et de fournitures, ainsi que de prendre des rendez-vous et de consulter les dossiers médicaux de leurs patients. La partie sécurité du logiciel sera mise en place afin de garantir la protection des données sensibles des patients, notamment les informations médicales et personnelles.
 
-![Diagramme de classes](file:///C:/Users/KIFALANGERIC/Desktop/recit/diagramme%20de%20classes.jpg)
+![Diagramme de classes](file:///C:/Users/KIFALANG ERIC/Desktop/recit/diagramme%20de%20classes.jpg)
 
 
 # Technologie choisie
