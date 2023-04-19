@@ -104,5 +104,5 @@ Pour les pull requests, les préférences de l’éditeur sont disponibles dans 
 
 
 
-
+Merci pour votre attention
 
