@@ -99,7 +99,21 @@ Le suivi des problèmes est le canal préféré pour les rapports de bogues, les
 
 Pour les pull requests, les préférences de l’éditeur sont disponibles dans la configuration de l’éditeur pour une utilisation facile dans les éditeurs de texte courants. En savoir plus et télécharger des plugins sur https://editorconfig.org. Si vous ne l’avez pas déjà fait, veuillez remplir et soumettre le Contrat de licence de contributeur.
 
-<span style="color:blue">Texte en bleu</span>
+# Ceci est un texte en bleu
+
+Pour mettre du texte en bleu dans un fichier README.md de GitHub, il suffit d'utiliser la syntaxe suivante :
+
+# texte en bleu
+
+Cela aura pour effet de mettre le texte en bleu dans le fichier README.md.
+
+Vous pouvez également utiliser d'autres couleurs en modifiant la syntaxe, par exemple :
+
+```diff
+- texte en rouge
++ texte en vert
+! texte en jaune
+# texte en bleu
 
 
 
