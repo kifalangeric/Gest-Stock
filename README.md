@@ -2,10 +2,11 @@
 Notre projet consiste en la création d'un logiciel de gestion de stock et de consultation de vétérinaire, utilisant les technologies Angular, Spring Boot et 
 Docker.Le logiciel permettra aux vétérinaires de gérer leur stock de médicaments et de fournitures, ainsi que de prendre des rendez-vous et de consulter les dossiers médicaux de leurs patients. La partie sécurité du logiciel sera mise en place afin de garantir la protection des données sensibles des patients, notamment les informations médicales et personnelles.
 
-# Le choix d'Angular et Spring Boot est dû à leur facilité d'utilisation et leur robustesse, ainsi qu'à leur compatibilité avec Docker, qui permettra de déployer le logiciel de manière efficace et rapide. Le déploiement dans des conteneurs Docker permettra également une gestion simplifiée de l'infrastructure et une meilleure portabilité du logiciel.
+# Technologie choisie
+ Le choix d'Angular et Spring Boot est dû à leur facilité d'utilisation et leur robustesse, ainsi qu'à leur compatibilité avec Docker, qui permettra de déployer le logiciel de manière efficace et rapide. Le déploiement dans des conteneurs Docker permettra également une gestion simplifiée de l'infrastructure et une meilleure portabilité du logiciel.
 
 # Comprendre l’application Gest-Stockc avec quelques diagrammes
-# Voir la présentation ici
+# Voir la présentation dans le support pdf
 
 # Diriger Gest-Stock localement
 Gest-Stock est une application Spring Boot construite à l’aide de Maven ou Gradle. Vous pouvez créer un fichier jar et l’exécuter à partir de la ligne de commande (il devrait fonctionner aussi bien avec Java 17 ou plus récent):
@@ -18,12 +19,13 @@ Vous pouvez ensuite accéder à Gest-Stock à http://localhost:8080/
 
 # Gest-Stock
 
-# Ou vous pouvez l’exécuter directement à partir de Maven en utilisant le plugin Spring Boot Maven. Si vous faites cela, il détectera immédiatement les modifications que vous apportez au projet (les modifications apportées aux fichiers sources Java nécessitent également une compilation - la plupart des gens utilisent un IDE pour cela):
+Ou vous pouvez l’exécuter directement à partir de Maven en utilisant le plugin Spring Boot Maven. Si vous faites cela, il détectera immédiatement les modifications que vous apportez au projet (les modifications apportées aux fichiers sources Java nécessitent également une compilation - la plupart des gens utilisent un IDE pour cela):
 
-./mvnw spring-boot:run
-# Remarque : les utilisateurs de Windows doivent définir pour éviter les assertions de format échouer la génération (utilisez pour définir cet indicateur globalement).git config core.autocrlf true--global
+# ./mvnw spring-boot:run
+ Remarque : les utilisateurs de Windows doivent définir pour éviter les assertions de format échouer la génération (utilisez pour définir cet indicateur globalement).git config core.autocrlf true--global
 
-# REMARQUE: Si vous préférez utiliser Gradle, vous pouvez générer l’application à l’aide et rechercher le fichier jar dans ../gradlew buildbuild/libs
+# REMARQUE: 
+Si vous préférez utiliser Gradle, vous pouvez générer l’application à l’aide et rechercher le fichier jar dans ../gradlew buildbuild/libs
 
 # Construction d’un conteneur
 Il n’y en a pas dans ce projet. Vous pouvez créer une image de conteneur (si vous avez un démon docker) à l’aide du plug-in Spring Boot build :Dockerfile
@@ -35,14 +37,17 @@ Notre outil de suivi des problèmes est disponible ici
 # Configuration de la base de données
 Dans sa configuration par défaut, Gest-Stock utilise une base de données 
 
-# Une configuration similaire est fournie pour MySQL et PostgreSQL si une configuration de base de données persistante est nécessaire. Notez que chaque fois que le type de base de données change, l’application doit s’exécuter avec un profil différent : pour MySQL ou pour PostgreSQL.spring.profiles.active=mysqlspring.profiles.active=postgres
+#  Configuration similaire
+Une configuration similaire est fournie pour MySQL et PostgreSQL si une configuration de base de données persistante est nécessaire. Notez que chaque fois que le type de base de données change, l’application doit s’exécuter avec un profil différent : pour MySQL ou pour PostgreSQL.spring.profiles.active=mysqlspring.profiles.active=postgres
 
-# Vous pouvez démarrer MySQL ou PostgreSQL localement avec n’importe quel programme d’installation qui fonctionne pour votre système d’exploitation ou utiliser docker:
+# Demarage
+Vous pouvez démarrer MySQL ou PostgreSQL localement avec n’importe quel programme d’installation qui fonctionne pour votre système d’exploitation ou utiliser docker:
 
-# docker run -e MYSQL_USER=Gest-Stock -e MYSQL_PASSWORD=Gest-Stock -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=Gest-Stock -p 3306:3306 mysql:8.0
+# docker run
+docker run -e MYSQL_USER=Gest-Stock -e MYSQL_PASSWORD=Gest-Stock -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=Gest-Stock -p 3306:3306 mysql:8.0
 ou
 
-# docker run -e POSTGRES_USER=Gest-Stock -e POSTGRES_PASSWORD=Gest-Stock -e POSTGRES_DB=Gest-Stock -p 5432:5432 postgres:15.2
+docker run -e POSTGRES_USER=Gest-Stock -e POSTGRES_PASSWORD=Gest-Stock -e POSTGRES_DB=Gest-Stock -p 5432:5432 postgres:15.2
 Une documentation supplémentaire est fournie pour MySQL et PostgreSQL.
 
 # Compilation du CSS
@@ -69,11 +74,14 @@ Sur la ligne de commande, exécutez :
 # File -> Import -> Maven -> Existing Maven project
 Ensuite, générez sur la ligne de commande ou utilisez le lanceur Eclipse (clic droit sur le projet et ) pour générer le css. Exécutez la méthode principale de l’application en cliquant dessus avec le bouton droit de la souris et en choisissant ../mvnw generate-resourcesRun As -> Maven installRun As -> Java Application
 
-# Dans IntelliJ IDEA Dans le menu principal, choisissez et sélectionnez le pom.xml Gest-Stock. Cliquez sur le bouton.File -> OpenOpen
+# IDE
+Dans IntelliJ IDEA Dans le menu principal, choisissez et sélectionnez le pom.xml Gest-Stock. Cliquez sur le bouton.File -> OpenOpen
 
-# Les fichiers CSS sont générés à partir de la version Maven. Vous pouvez les construire sur la ligne de commande ou cliquer avec le bouton droit de la souris sur le projet, puis ../mvnw generate-resourcesspring-Gest-StockclinicMaven -> Generates sources and Update Folders
+# Generations des fichiers CSS 
+Les fichiers CSS sont générés à partir de la version Maven. Vous pouvez les construire sur la ligne de commande ou cliquer avec le bouton droit de la souris sur le projet, puis ../mvnw generate-resourcesspring-Gest-StockclinicMaven -> Generates sources and Update Folders
 
-# Une configuration d’exécution nommée doit avoir été créée pour vous si vous utilisez une version Ultimate récente. Sinon, exécutez l’application en cliquant avec le bouton droit sur la classe principale et en choisissant .ClinicApplicationGest-StockClinicApplicationRun 'ClinicApplication'
+# Configuration d’exécution
+Une configuration d’exécution nommée doit avoir été créée pour vous si vous utilisez une version Ultimate récente. Sinon, exécutez l’application en cliquant avec le bouton droit sur la classe principale et en choisissant .ClinicApplicationGest-StockClinicApplicationRun 'ClinicApplication'
 
 # **Accédez à Gest-Stock**
 
