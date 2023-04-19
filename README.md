@@ -99,4 +99,7 @@ Le suivi des problèmes est le canal préféré pour les rapports de bogues, les
 
 Pour les pull requests, les préférences de l’éditeur sont disponibles dans la configuration de l’éditeur pour une utilisation facile dans les éditeurs de texte courants. En savoir plus et télécharger des plugins sur https://editorconfig.org. Si vous ne l’avez pas déjà fait, veuillez remplir et soumettre le Contrat de licence de contributeur.
 
+<span style="color:blue">Texte en bleu</span>
+
+
 
